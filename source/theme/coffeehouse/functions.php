@@ -95,7 +95,7 @@ add_action( 'after_setup_theme', 'coffeehouse_setup' );
  * @global int $content_width
  */
 function coffeehouse_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'coffeehouse_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'coffeehouse_content_width', 960 );
 }
 add_action( 'after_setup_theme', 'coffeehouse_content_width', 0 );
 

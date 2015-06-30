@@ -21,9 +21,9 @@
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
 
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:700,600,400,300"/>
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif"/>
-<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/coffeehouse.min.css">
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Merriweather:400,700,400italic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/coffeehouse.min.css">
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/modernizr.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

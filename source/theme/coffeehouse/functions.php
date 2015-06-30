@@ -5,6 +5,13 @@
  * @package Coffeehouse
  */
 
+/**
+ * Set the content width based on the theme's design and stylesheet.
+ */
+if ( ! isset( $content_width ) ) {
+	$content_width = 1024; /* pixels */
+}
+
 if ( ! function_exists( 'coffeehouse_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -67,14 +74,16 @@ function coffeehouse_setup() {
 		'video',
 		'quote',
 		'link',
+		'gallery'
 	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'coffeehouse_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
 }
+
+if ( function_exists( 'add_image_size' ) ) {
+	add_image_size( 'coffeehouse-thumb', 300, 9999 ); //300 pixels wide (and unlimited height)
+	add_image_size( 'coffeehouse-medium', 500, 9999 ); //500 pixels wide (and unlimited height)
+	add_image_size( 'coffeehouse-large', 1024, 9999  ); //1024 pixels wide and unlimited height
+}
+
 endif; // coffeehouse_setup
 add_action( 'after_setup_theme', 'coffeehouse_setup' );
 
@@ -148,3 +157,40 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+function coffeehouse_pagination($pages = '', $range = 2) {
+	$showitems = ($range * 2)+1;
+
+	global $paged;
+	if(empty($paged)) $paged = 1;
+
+	if($pages == '')
+	{
+		global $wp_query;
+		$pages = $wp_query->max_num_pages;
+		if(!$pages)
+		{
+			$pages = 1;
+		}
+	}
+
+	if(1 != $pages)
+	{
+		echo "<span class=\"pull-right page-count\">Page ".$paged." of ".$pages."</span>";
+		echo "<ul class='pagination'>";
+		if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link(1)."'>&laquo;</a></li>";
+		if($paged > 1 && $showitems < $pages) echo "<li><a href='".get_pagenum_link($paged - 1)."'>&lsaquo;</a></li>";
+
+		for ($i=1; $i <= $pages; $i++)
+		{
+			if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+			{
+				echo ($paged == $i)? "<li class='active'><a href='#'>".$i."<span class='sr-only'>(current)</span></a></li>":"<li><a href='".get_pagenum_link($i)."' class='inactive' >".$i."</a></li>";
+			}
+		}
+
+		if ($paged < $pages && $showitems < $pages) echo "<li><a href='".get_pagenum_link($paged + 1)."'>&rsaquo;</a></li>";
+		if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<li><a href='".get_pagenum_link($pages)."'>&raquo;</a></li>";
+		echo "</ul>\n";
+	}
+}

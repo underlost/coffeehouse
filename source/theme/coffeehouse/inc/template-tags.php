@@ -70,9 +70,9 @@ if ( ! function_exists( 'coffeehouse_posted_on' ) ) :
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function coffeehouse_posted_on() {
-	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+	$time_string = '<i class="glyphicon glyphicon-time"></i> <time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated sr-only" datetime="%3$s">%4$s</time>';
 	}
 
 	$time_string = sprintf( $time_string,
@@ -92,7 +92,7 @@ function coffeehouse_posted_on() {
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline sr-only"> ' . $byline . '</span>'; // WPCS: XSS OK.
 
 }
 endif;
@@ -264,3 +264,20 @@ function coffeehouse_category_transient_flusher() {
 }
 add_action( 'edit_category', 'coffeehouse_category_transient_flusher' );
 add_action( 'save_post',     'coffeehouse_category_transient_flusher' );
+
+
+if ( ! function_exists( 'coffeehouse_comments_link' ) ) :
+
+function coffeehouse_comments_link() {
+
+	$leavecomment = __( '<i class="glyphicon glyphicon-comment"></i> No comments', 'coffeehouse' );
+	$onecomment = __( '<i class="glyphicon glyphicon-comment"></i> 1 Comment', 'coffeehouse' );
+	$morecomments = __( '<i class="glyphicon glyphicon-comment"></i> % Comments', 'coffeehouse' );
+	$commentsoff = __( '<i class="glyphicon glyphicon-comment"></i> Comments Disabled', 'coffeehouse' );
+
+	// echo comments_popup_link( __( 'No comments', 'coffeehouse' ), __( '1 Comment', 'coffeehouse' ), __( '% Comments', 'coffeehouse' ) );
+
+	echo comments_popup_link($leavecomment, $onecomment,$morecomments, 'comments-link', $commentsoff ) ;
+
+}
+endif;

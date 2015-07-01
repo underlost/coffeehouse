@@ -38,7 +38,7 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
-
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 			<svg class="site-logo" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 72.392" enable-background="new 0 0 100 72.392" xml:space="preserve">
 				<path d="M58.823,17.958c7.955,0,14.862,4.381,18.675,10.834l22.476,0.026V16.637c0-4.533-3.647-8.21-8.121-8.21H8.096
 				C3.608,8.427,0,12.104,0,16.637l0.023,12.078l40.112,0.027C43.975,22.312,50.854,17.958,58.823,17.958"></path>
@@ -51,7 +51,7 @@
 				<path d="M70.72,32.775c-0.342-0.615-0.773-1.192-1.242-1.741c-2.547-3.1-6.359-5.138-10.654-5.138
 				c-4.309,0-8.121,2.026-10.668,5.112c-0.468,0.563-0.9,1.14-1.267,1.767c-1.278,2.127-2.052,4.585-2.052,7.25
 				c0,7.788,6.26,14.114,13.987,14.114c7.689,0,13.95-6.326,13.95-14.114C72.773,37.361,72.013,34.903,70.72,32.775"></path>
-			</svg>
+			</svg></a>
 
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<p class="site-description"><?php bloginfo( 'description' ); ?></p>

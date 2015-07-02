@@ -48,9 +48,8 @@
 	    		echo '<a href="' . esc_url( get_permalink() ) . '" title="' . the_title_attribute('echo=0') . '" >'; ?>
 	    		<figure><?php the_post_thumbnail('large');?></figure>
 	    		<?php echo '</a>'; ?> </div>
-				<div class="col-md-1"></div>
 			<?php } ?>
-				<div class="col-md-5">
+				<div class="col-md-5 col-md-offset-1">
 					<div class="entry-meta">
 						<?php coffeehouse_posted_on(); ?>
 						<?php coffeehouse_comments_link(); ?>

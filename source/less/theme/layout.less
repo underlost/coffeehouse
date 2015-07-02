@@ -59,7 +59,7 @@
 		a {color: #f0f0f0; font-weight: 100; }
 	}
 
-	figure img.attachment-large {
+	figure img {
 		.img-responsive();
 		border: 1px solid #1a1a1a;
 	}
@@ -69,7 +69,6 @@
 	.thumb img {border: 1px solid #1a1a1a;}
 	.attachment-medium, .attachment-large {.img-responsive();}
 }
-
 
 .article-wrap {
 	background:RGBA(233,233,228,0.9);
@@ -84,14 +83,41 @@
 
 .format-standard {
 	padding: 3.4em 0;
-	.entry-title {font-size: 42px;}
+	.entry-title {
+		font-size: 42px;
+		line-height: floor((42px * @line-height-base));
+	}
 	.entry-title, .entry-content, .entry-footer {.layout-single-column();}
-	.entry-meta {margin: 8px auto; max-width: 640px;}
+	.entry-meta {margin: 18px auto; max-width: 640px;}
+	.entry-content {margin-top: 40px;}
 }
 
-.single-post {
-	.format-standard {}
-	.format-gallery {.attachment-large {margin: auto 40px;} }
+.format-aside {
+	.entry-meta { margin-top: 10px; }
+}
+
+.format-quote {
+	text-align: center;
+	background-position: center;
+	background-size: cover;
+
+	.entry-header {
+		display: block;
+		margin-bottom: 32px;
+	}
+	.entry-title {
+		font-size: 36px;
+		font-style: italic;
+		quotes: "“" "”" "‘" "’";
+		display: inline;
+	}
+	.entry-title:before {
+		content: open-quote;
+		font-size: 46px;
+		margin-right: 8px;
+		opacity: .5;
+		text-shadow: 1px 2px #000;
+	}
 }
 
 .format-standard,
@@ -102,6 +128,8 @@
 		line-height: 32px;
 		color: #74757a;
 		.lead {
+			font-size: 26px;
+			line-height: floor((26px * @line-height-base));
 			color: @text-color;
 			font-family: @font-family-sans-serif;
 		}
@@ -126,31 +154,23 @@
 	}
 }
 
-.format-aside {
-	.entry-meta { margin: 10px 0; }
-}
-
-.format-quote {
-	text-align: center;
-	background-position: center;
-	background-size: cover;
-
-	.entry-header {
-		display: block;
-		margin-bottom: 32px;
-	}
-	.entry-title {
-		font-size: 36px;
-		font-style: italic;
-		quotes: "“" "”" "‘" "’";
-		display: inline;
-	}
-	.entry-title:before {
-		content: open-quote;
-		font-size: 46px;
-		margin-right: 8px;
-		opacity: .5;
-		text-shadow: 1px 2px #000;
+.single-post {
+	.gallery .attachment-large {margin: 40px auto; border: 1px solid #1a1a1a;}
+	.format-standard {}
+	.format-gallery {
+		.entry-title {
+			font-size: 42px;
+			line-height: floor((42px * @line-height-base));
+		}
+		.single-entry-meta {
+			font-size: 26px;
+			line-height: floor((26px * @line-height-base));
+			padding: 0;
+			color: @text-color;
+			background-color: none;
+			margin-bottom: 20px;
+			a {color: @text-color;}
+		}
 	}
 }
 
